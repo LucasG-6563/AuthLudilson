@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "365416929186",
+    "project_id": "authludilson",
+    "storage_bucket": "authludilson.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:365416929186:android:0e4b1f7c9afaeb4cc5c4fb",
+        "android_client_info": {
+          "package_name": "com.example.authludilson"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "365416929186-9ps21lja2s8k83hrkom23dkuekvdcq32.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.authludilson",
+            "certificate_hash": "ab22306f40092cd15e3a35371891d870f8bdee55"
+          }
+        },
+        {
+          "client_id": "365416929186-k0ivi7h2phftpcjq95fcp21kmhusmpsv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC9ROqGTIcQdwdvuhue0MpkeqLK-f1H5vs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "365416929186-k0ivi7h2phftpcjq95fcp21kmhusmpsv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
