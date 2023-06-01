@@ -1,6 +1,9 @@
 package com.example.authludilson;
 
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -9,6 +12,8 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -49,6 +54,12 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
 
         btnSair = (Button) findViewById(R.id.btnSair);
         btnSair.setOnClickListener(this);
+
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
+            NotificationChannel channel = new NotificationChannel("My Notification", "My Notification", NotificationManager.IMPORTANCE_DEFAULT);
+            NotificationManager manager = getSystemService(NotificationManager.class);
+            manager.createNotificationChannel(channel);
+        }
     }
 
     @Override
@@ -68,6 +79,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
             @Override
             public void onResult(@NonNull Status status) {
                 msg.setText("Vacilou tio!");
+                notificaLogout();
             }
         });
     }
@@ -91,8 +103,32 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
         if(result.isSuccess()){
             GoogleSignInAccount acct = result.getSignInAccount();
             msg.setText("Tudo bom "+acct.getDisplayName());
+            notificaLogin(acct.getDisplayName());
         } else {
         }
+    }
+
+    public void notificaLogin(String nome){
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(this, "My Notification");
+        builder.setContentTitle("Bem-vindo");
+        builder.setContentText("Olá "+nome+", tudo bem?");
+        builder.setSmallIcon(R.drawable.bv);
+        builder.setPriority(NotificationCompat.PRIORITY_DEFAULT);
+        builder.setAutoCancel(true);
+
+        NotificationManagerCompat managerCompat = NotificationManagerCompat.from(this);
+        managerCompat.notify(1,builder.build());
+    }
+    public void notificaLogout(){
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(this, "My Notification");
+        builder.setContentTitle("Vacilou!");
+        builder.setContentText("Ta saindo porque tio?");
+        builder.setSmallIcon(R.drawable.bv);
+        builder.setPriority(NotificationCompat.PRIORITY_DEFAULT);
+        builder.setAutoCancel(true);
+
+        NotificationManagerCompat managerCompat = NotificationManagerCompat.from(this);
+        managerCompat.notify(2,builder.build());
     }
 
     @Override
